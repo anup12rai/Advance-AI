@@ -1,7 +1,7 @@
 from groq import Groq
 from dotenv import load_dotenv
 import os
-from utils.emoji_remover import remove_emojis
+from emoji_remove import remove_emojis
 
 load_dotenv()
 GroqAPIKey = os.getenv("GroqAPIKey") 
@@ -24,13 +24,13 @@ def ChatBot(user_input):
             stop=None
         )
 
-        # Stream output
+        
         Answer = ""
         for chunk in completion:
             content = chunk.choices[0].delta.content or ""
             content_no_emoji = remove_emojis(content)  # Remove emojis from output
             Answer += content_no_emoji
-            print(content_no_emoji, end="")
+            
 
         print()  # newline
         return Answer
