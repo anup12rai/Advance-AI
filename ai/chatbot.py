@@ -1,20 +1,21 @@
 from groq import Groq
 from dotenv import load_dotenv
 import os
+from utils.emoji_remover import remove_emojis
 
-# Load .env
 load_dotenv()
-GroqAPIKey = os.getenv("GroqAPIKey")  # Make sure .env has GroqAPIKey=YOUR_KEY
-
-# Initialize client
+GroqAPIKey = os.getenv("GroqAPIKey") 
 client = Groq(api_key=GroqAPIKey)
 
 def ChatBot(user_input):
     try:
+        # Remove emojis from user input
+        clean_input = remove_emojis(user_input)
+
         completion = client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[
-                {"role": "user", "content": user_input}
+                {"role": "user", "content": clean_input}
             ],
             temperature=1,
             max_completion_tokens=8192,
@@ -26,8 +27,10 @@ def ChatBot(user_input):
         # Stream output
         Answer = ""
         for chunk in completion:
-            Answer += chunk.choices[0].delta.content or ""
-            print(chunk.choices[0].delta.content or "", end="")
+            content = chunk.choices[0].delta.content or ""
+            content_no_emoji = remove_emojis(content)  # Remove emojis from output
+            Answer += content_no_emoji
+            print(content_no_emoji, end="")
 
         print()  # newline
         return Answer
@@ -35,7 +38,6 @@ def ChatBot(user_input):
     except Exception as e:
         return f"Error: {e}"
 
-# Run chatbot
 if __name__ == "__main__":
     while True:
         user_input = input("You: ")
