@@ -1,9 +1,8 @@
 import qrcode
 
-# Create simple QR code
-img = qrcode.make("Hello World")
+youtube_url = "https://mime.io/"
 
-# Save image
-img.save("hello_world.png")
+img = qrcode.make(youtube_url)
+img.save("christmas.png")
 
-print("QR code created: hello_world.png")
+print("QR Code generated successfully!")
