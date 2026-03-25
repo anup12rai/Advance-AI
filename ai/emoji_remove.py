@@ -39,7 +39,7 @@ def remove_emojis(text):
     for symbol in emojis_and_symbols:
         text = text.replace(symbol, "")
     return text
-
+#hello world
 # Example usage
 if __name__ == "__main__":
     sample_text = "Hello 😄! This is a test 🌸 message with emojis 👍 and symbols #@$."
