@@ -16,7 +16,7 @@ client = Groq(api_key=GroqAPIKey)
 os.system("cls" if os.name == "nt" else "clear")
 
 def print_header():
-    print("\n" + BLUE + "-------------------- CHATBOT --------------------" + RESET)
+    print("\n" + BLUE + "-------------------- CHATBOT -------------------" + RESET)
     print(GREEN + "                Powered by Groq AI                " + RESET)
     print(BLUE + "--------------------------------------------------\n" + RESET)
 
