@@ -55,8 +55,6 @@ HtmlCode = '''<!DOCTYPE html>
     </script>
 </body>
 </html>'''
-
-# Set the recognition language dynamically
 HtmlCode = str(HtmlCode).replace("recognition.lang = '';", f"recognition.lang = '{InputLanguage}';")
 
 # Save the HTML file
