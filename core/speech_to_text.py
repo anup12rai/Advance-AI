@@ -57,7 +57,6 @@ HtmlCode = '''<!DOCTYPE html>
 </html>'''
 HtmlCode = str(HtmlCode).replace("recognition.lang = '';", f"recognition.lang = '{InputLanguage}';")
 
-# Save the HTML file
 os.makedirs("Data", exist_ok=True)
 with open(r"Data/Voice.html", "w", encoding="utf-8") as f:
     f.write(HtmlCode)
@@ -75,11 +74,9 @@ chrome_options.add_argument("--headless=new")  # Keep headless mode, but can be 
 chrome_options.add_argument("--log-level=3")
 chrome_options.add_argument("--disable-logging")
 
-# Set up the Chrome driver
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# Temp directory setup
 TempDirPath = rf"{current_dir}/Frontend/File"
 os.makedirs(TempDirPath, exist_ok=True)
 
